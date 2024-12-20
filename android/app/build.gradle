@@ -1,0 +1,57 @@
+plugins {
+    id "com.android.application"
+    id 'com.google.gms.google-services'
+    id "kotlin-android"
+    id "dev.flutter.flutter-gradle-plugin"
+}
+
+android {
+    namespace = "com.example.learning"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = "25.1.8937393"
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_17
+    }
+
+    defaultConfig {
+        applicationId = "com.example.learning"
+        minSdk = 26
+        targetSdk = flutter.targetSdkVersion
+        versionCode = flutter.versionCode
+        versionName = flutter.versionName
+    }
+
+    buildTypes {
+        release {
+            // Replace with your actual signing configuration.
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'your-key-alias'
+            keyPassword 'your-key-password'
+            storeFile file('path-to-your-keystore.jks')
+            storePassword 'your-store-password'
+        }
+    }
+}
+
+flutter {
+    source = "../.."
+}
+
+dependencies {
+    implementation 'com.google.firebase:firebase-firestore:25.1.1'
+    implementation platform('com.google.firebase:firebase-bom:33.7.0')
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.3'
+    implementation 'androidx.multidex:multidex:2.0.1'
+}
